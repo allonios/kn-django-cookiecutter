@@ -50,6 +50,7 @@ urlpatterns += i18n_patterns(
     # the list:
     path("", include(wagtail_urls)),
     {% endif %}
+    re_path(r'^s/', include('tinylinks.urls')),
 )
 
 if settings.DEBUG:

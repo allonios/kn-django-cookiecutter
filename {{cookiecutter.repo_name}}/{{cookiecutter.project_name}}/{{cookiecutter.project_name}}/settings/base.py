@@ -215,6 +215,8 @@ INSTALLED_APPS = [
     "home",
     "search",
 
+    'tinylinks',
+
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",

@@ -1,0 +1,36 @@
+{% extends "tinylinks/base.html" %}
+{% load i18n verbose_names %}
+
+{% block main %}
+<div class="container">
+<h2>{% trans "Statistics" %}</h2>
+{% if object_list %}
+    <table class="table">
+        <thead>
+            <tr>
+                <td>{% get_verbose_field_name object_list.0 "user" %}</td>
+                <td>{% get_verbose_field_name object_list.0 "long_url" %}</td>
+                <td>{% get_verbose_field_name object_list.0 "short_url" %}</td>
+                <td>{% get_verbose_field_name object_list.0 "is_broken" %}</td>
+                <td>{% get_verbose_field_name object_list.0 "last_checked" %}</td>
+                <td>{% get_verbose_field_name object_list.0 "amount_of_views" %}</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in object_list %}
+                <tr>
+                    <td>{{ link.user }}</td>
+                    <td>{{ link.long_url }}</td>
+                    <td><a href="{% url "tinylink_update" pk=link.id mode="short" %}">{{ link.short_url }}</a></td>
+                    <td>{% if link.is_broken %}{% trans "Invalid" %}{% else %}{% trans "Valid" %}{% endif %}</td>
+                    <td>{{ link.last_checked }}</td>
+                    <td>{{ link.amount_of_views }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+<p>{% trans "No tinylinks added yet." %}</p>
+{% endif %}
+</div>
+{% endblock %}

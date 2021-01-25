@@ -35,3 +35,7 @@ CACHE
 CACHE/*
 togit.sh
 htmlcov/
+.env
+.venv
+env/
+venv/
